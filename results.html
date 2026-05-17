@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawTrack</title>
+  <link rel="stylesheet" href="css/nav_foot.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .hero {
+      height: 65vh;
+      background:url('pictures/results.png');
+      background-size:cover;
+      background-position:center;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+
+      color:black;
+      padding:40px;
+    }
+
+    .page-about{
+      max-width:1000px;
+      width:90%;
+
+      margin:70px auto 50px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:50px;
+
+      padding:20px 0;
+    }
+
+    .page-about-image img{
+      width:260px;
+      max-width:100%;
+    }
+
+    .page-about-text{
+      max-width:500px;
+    }
+
+    .page-about-text h2{
+      font-size:28px;
+      margin-bottom:12px;
+    }
+
+    .page-about-text p{
+      font-size:16px;
+      line-height:1.8;
+      color:#555;
+    }
+
+    /* SECTION TITLE */
+
+    .section-title{
+      font-size:28px;
+      margin-bottom:25px;
+      color:#333;
+    }
+
+    /* WRAPPERS */
+
+    .results-wrapper,
+    .content-wrapper,
+    .discussion-wrapper{
+      width:90%;
+      max-width:1100px;
+
+      margin:60px auto;
+      padding:40px;
+
+      background:white;
+      border-radius:30px;
+
+      box-shadow:0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    /* FOR DESIGN IMPROVEMENTS ONLY */
+
+    .design-grid{
+      display:flex;
+      justify-content:center;
+      gap:25px;
+      flex-wrap:wrap;
+    }
+
+    .design-grid .result-card{
+      width:460px;
+      min-width:460px;
+
+      flex-shrink:1;
+    }
+
+    /* HORIZONTAL SCROLL ONLY FOR TESTING RESULTS */
+
+    .results-scroll{
+      display:flex;
+      gap:22px;
+
+      overflow-x:auto;
+      overflow-y:hidden;
+
+      padding-bottom:12px;
+
+      scroll-behavior:smooth;
+    }
+
+    /* cards for testing results only */
+    .results-scroll .result-card{
+      min-width:340px;
+      width:340px;
+
+      flex-shrink:0;
+
+      transition:0.3s ease;
+    }
+
+    .results-scroll .result-card:hover{
+      transform:translateY(-4px);
+    }
+
+    /* images for testing results only */
+    .results-scroll .result-card img{
+      width:100%;
+      height:240px;
+
+      object-fit:contain;
+
+      border-radius:16px;
+      margin-bottom:15px;
+    }
+
+    /* scrollbar styling */
+    .results-grid::-webkit-scrollbar{
+      height:8px;
+    }
+
+    .results-grid::-webkit-scrollbar-thumb{
+      background:#D89B6B;
+      border-radius:20px;
+    }
+
+    /* TOP CARDS */
+
+    .result-card{
+      min-width:340px;
+      width:340px;
+
+      flex-shrink:0;
+
+      background:#FFEDDB;
+      border-radius:22px;
+      padding:22px;
+
+      text-align:center;
+
+      transition:0.3s ease;
+    }
+
+    .result-card:hover{
+      transform:translateY(-4px);
+    }
+    .result-card img{
+      width:100%;
+      height:240px;
+      object-fit:auto;
+
+      border-radius:16px;
+      margin-bottom:15px;
+    }
+
+    .result-card h3{
+      margin-bottom:10px;
+    }
+
+    .result-card p{
+      color:#555;
+      line-height:1.6;
+    }
+
+    .result-text{
+      margin-bottom:20px;
+      line-height:1.8;
+    }
+
+    .design-img{
+      height:120px !important;
+
+      object-fit:contain !important;
+      padding:10px;
+    }
+
+    /* SIDE IMAGE CARD */
+
+    .issue-card{
+      display:flex;
+      align-items:center;
+      gap:25px;
+
+      background:#FFEDDB;
+      border-radius:22px;
+
+      padding:25px;
+      margin-bottom:20px;
+    }
+
+    .issue-card img{
+      width:60px;
+      height:60px;
+      object-fit:cover;
+
+      border-radius:16px;
+      flex-shrink:0;
+    }
+
+    .issue-content h3{
+        font-size:17px;
+        margin-bottom:8px;
+    }
+
+    .issue-content p{
+      color:#555;
+      font-size: 14px;
+      line-height:1.6;
+    }
+
+    /* DISCUSSION */
+
+    .discussion-card{
+      background:#FFEDDB;
+      border-radius:18px;
+      padding:22px;
+    }
+
+    .discussion-card p{
+      line-height:1.7;
+      font-size: 14px;
+      color:#555;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar" id="navbar">
+    <div class="logo">
+      <img id="logo" src="pictures/LOGO 3.png" alt="Logo">
+    </div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="data.html">Data Gathering</a></li>
+      <li><a href="results.html" class="active">Results & Discussions</a></li>
+      <li><a href="tasks.html">Tasks & Scenarios</a></li>
+      <li><a href="reflections.html">Reflections</a></li>
+    </ul>
+  </div>
+
+  <section class="hero"></section>
+
+  <section class="page-about">
+
+    <div class="page-about-image">
+      <img src="pictures/py.gif" alt="Page Image">
+    </div>
+
+    <div class="page-about-text">
+      <h2>About this Page</h2>
+
+      <p>
+        This page presents the findings, observations, and usability issues 
+        identified during the evaluation process, along with discussions of 
+        participant feedback and system performance.
+    </div>
+
+  </section>
+
+  <!-- RESULTS SECTION -->
+
+  <section class="results-wrapper">
+
+    <h2 class="section-title">
+      Summary of Usability Testing Results
+    </h2>
+
+    <div class="results-scroll">
+
+      <div class="result-card">
+        <img src="pictures/ice.png" alt="Task Completion">
+
+        <h3>SUS Score</h3>
+        <p>The system achieved an <strong>overall SUS score of 61.38%</strong>, which is interpreted 
+          as <strong>“OK” or “Marginally Acceptable”</strong> usability. This suggests that users were 
+          generally able to use the system effectively, although several usability 
+          improvements are still needed to increase user satisfaction and improve the 
+          overall experience.</p>
+      </div>
+
+      <div class="result-card">
+        <img src="pictures/bar.png" alt="User Satisfaction">
+
+        <h3>User Satisfaction</h3>
+        <p>This graph presents the distribution of respondents according to their 
+          System Usability Scale (SUS) score ranges, showing that most participants 
+          rated PawTrack within the <strong>acceptable usability range</strong>, while fewer 
+          respondents reported extremely high or low satisfaction levels.</p>
+      </div>
+
+            <div class="result-card">
+        <img src="pictures/temp.png" alt="User Satisfaction">
+
+        <h3>SUS Satisfaction Score</h3>
+        <p>This visual illustrates the <strong>interpretation of the SUS scores</strong> obtained 
+          during usability testing, categorizing respondent satisfaction levels from 
+          low to high and indicating the overall perceived usability of the PawTrack 
+          system.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="results-wrapper">
+
+    <h2 class="section-title">
+      User Demographics and Usability Feedback Analysis
+    </h2>
+
+    <div class="results-scroll">
+
+      <div class="result-card">
+        <img src="pictures/barh.png" alt="Task Completion">
+
+        <h3>User Distribution by Year and Gender</h3>
+        <p>The graph presents the demographic distribution of respondents based on 
+          year level and gender who participated in the usability testing of the 
+          PawTrack: Pet Care & Vet Booking App. The results show that the <strong>majority 
+          of respondents were female students from the 3rd year level</strong>, followed by 
+          male respondents from the same year. A smaller number of participants came 
+          from the 2nd year level. This distribution indicates that most of the 
+          feedback and usability evaluation results were gathered from active 
+          technology users within the target student population.
+      </div>
+
+      <div class="result-card">
+        <img src="pictures/pie.png" alt="User Satisfaction">
+
+        <h3>Distribution of Usability Feedback Categories</h3>
+        <p>The pie chart summarizes the overall feedback gathered from respondents 
+          regarding the usability of the prototype. Most participants provided 
+          <strong>positive feedback</strong>, describing the application as <strong>easy to use, convenient, 
+          and helpful</strong> for managing pet healthcare activities. A smaller percentage 
+          of respondents suggested possible improvements related to navigation, 
+          notifications, and responsiveness, while very few participants did not 
+          provide additional feedback. Overall, the results indicate that users 
+          generally had a positive experience while interacting with the prototype.</p>
+      </div>
+
+            <div class="result-card">
+        <img src="pictures/feedback.png" alt="User Satisfaction">
+
+        <h3>User Feedback on Pet Care App</h3>
+        <p>The diagram highlights the common feedback and suggestions gathered from 
+          respondents during the usability testing of the PawTrack prototype. Most 
+          users expressed <strong>positive usability experiences</strong> and found the system 
+          understandable and easy to navigate. Some respondents recommended 
+          improvements related to navigation flow, visual presentation, and 
+          instructional content to further enhance the user experience. Other 
+          suggestions included adding notification features for vaccine schedules 
+          and improving system responsiveness for smoother interaction. These 
+          findings helped identify potential enhancements that may be considered in 
+          future versions of the application.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  
+
+
+  <!-- ISSUES -->
+
+  <section class="content-wrapper">
+
+    <h2 class="section-title">
+      Issues
+    </h2>
+
+    <div class="issue-card">
+
+      <img src="pictures/qm.gif" alt="Issue">
+
+      <div class="issue-content">
+
+        <h3>Navigation Challenges</h3>
+
+        <p>
+          Participants experienced minor difficulties locating certain features 
+          and moving between sections of the application.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="issue-card">
+
+      <img src="pictures/bx.gif" alt="Issue">
+
+      <div class="issue-content">
+
+        <h3>Visual Consistency</h3>
+
+        <p>
+          Some users suggested improving the interface aesthetics through more 
+          consistent layouts, spacing, and visual hierarchy.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="issue-card">
+
+      <img src="pictures/pv.gif" alt="Issue">
+
+      <div class="issue-content">
+
+        <h3>Performance Delays</h3>
+
+        <p>
+          A few participants reported occasional lag or slower transitions while 
+          navigating the system.
+        </p>
+
+      </div>
+
+    </div>
+
+        <div class="issue-card">
+
+      <img src="pictures/pm.gif" alt="Issue">
+
+      <div class="issue-content">
+
+        <h3>Limited Notifications</h3>
+
+        <p>
+          Users recommended adding more visible reminders and alerts for vaccination 
+          schedules and appointments.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINDINGS -->
+
+  <section class="discussion-wrapper">
+
+    <h2 class="section-title">
+      Findings
+    </h2>
+
+    <div class="discussion-card">
+
+      <p class="result-text">
+        The usability testing results showed that most participants found the 
+        PawTrack application easy to use and generally effective for managing 
+        pet-related information, such as vaccination records and veterinary 
+        appointments. Participants were able to complete the assigned tasks with 
+        minimal assistance, indicating that the system's core functions were 
+        understandable and accessible to users.
+      </p>
+
+      <p class="result-text">
+        Despite the positive feedback, several participants identified areas that 
+        could be improved to enhance the overall user experience. Suggestions 
+        included improving navigation clarity, refining the visual presentation of 
+        the interface, adding clearer reminders and notifications, and optimizing 
+        system responsiveness to provide smoother interactions within the application.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- RECOMMENDATIONS -->
+
+  <section class="content-wrapper">
+
+    <h2 class="section-title">
+      Recommendations
+    </h2>
+
+    <div class="issue-card">
+
+      <img src="pictures/hn.gif" alt="Recommendation">
+
+      <div class="issue-content">
+
+        <h3>Improve Navigation Flow</h3>
+
+        <p>
+          Simplify navigation and improve menu organization to make important 
+          features easier to locate.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="issue-card">
+
+      <img src="pictures/dg.gif" alt="Recommendation">
+
+      <div class="issue-content">
+
+        <h3>Enhance System Performance</h3>
+
+        <p>
+          Optimize loading times and transitions to provide smoother interactions for 
+          users.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="issue-card">
+
+      <img src="pictures/st.gif" alt="Recommendation">
+
+      <div class="issue-content">
+
+        <h3>Strengthen Reminder Features</h3>
+
+        <p>
+          Implement more noticeable notifications for upcoming vaccinations and 
+          appointments.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="issue-card">
+
+      <img src="pictures/pn.jpg" alt="Recommendation">
+
+      <div class="issue-content">
+
+        <h3>Refine Visual Design</h3>
+
+        <p>
+          Improve spacing, typography, and interface consistency to create a more 
+          polished experience.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DESIGN IMPROVEMENTS -->
+
+  <section class="results-wrapper">
+
+    <h2 class="section-title">
+      Suggested Design Improvements
+    </h2>
+
+    <div class="design-grid">
+
+      <div class="result-card">
+        <img src="pictures/pt.gif" alt="Improvement" class="design-img">
+
+        <h3>Improved Navigation and User Guidance</h3>
+
+        <p>
+          Enhance the application's navigation system by making menus and important 
+          features easier to locate while adding clearer instructions and guidance to 
+          help users complete tasks more efficiently and confidently.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <img src="pictures/spk.gif" alt="Improvement" class="design-img">
+
+        <h3>Enhanced Visual Design and System Performance</h3>
+
+        <p>
+          Improve the visual consistency of the interface through better spacing, 
+          layout, and design elements while optimizing system responsiveness and 
+          adding clearer notifications for appointments and vaccination reminders.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+<script>
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const logo = document.getElementById('logo');
+
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        logo.src = "pictures/LOGO 3.png";
+      } else {
+        navbar.classList.remove('scrolled');
+        logo.src = "pictures/LOGO 4.png";
+      }
+    });
+  </script>
+
+</body>
+<footer class="footer">
+
+  <p>
+    &copy; PawTrack Pet Care & Vet Booking System | BSIT-3C Group 5
+  </p>
+
+</footer>
+</html>
