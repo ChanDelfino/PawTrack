@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background: rgb(247, 243, 243);
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 32px;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    background: #1e1e1e; /* always visible by default */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* On home page hero, navbar becomes transparent until scroll */
+.navbar.hero-top {
+    background: transparent;
+    box-shadow: none;
+}
+
+.navbar.scrolled {
+    background: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar .logo img {
+    height: 28px;
+}
+
+.navbar ul {
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    color: white;
+}
+
+.navbar ul li {
+    cursor: pointer;
+}
+
+.navbar ul li:hover {
+    color: #D89B6B;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li:hover a {
+    color: #D89B6B;
+}
+
+.navbar ul li a.active {
+    color: #D89B6B;
+    border-bottom: 2px solid #D89B6B;
+    padding-bottom: 5px;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top: 80px;
+    padding: 20px 15px;
+
+    text-align: center;
+
+    background: #FFEDDB;
+
+    font-size: 14px;
+    color: #666;
+
+    border-top: 1px solid rgba(0,0,0,0.08);
+}

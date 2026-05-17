@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawTrack</title>
+  <link rel="stylesheet" href="css/nav_foot.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .hero{
+      height:65vh;
+
+      background:url('pictures/tasks.png');
+      background-size:cover;
+      background-position:center;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+
+      color:black;
+    }
+
+    .hero-content h1{
+      font-size:56px;
+      margin-bottom:15px;
+      font-weight:bold;
+    }
+
+    .hero-content p{
+      font-size:18px;
+      opacity:0.9;
+    }
+
+    .page-about{
+      max-width:1000px;
+      width:90%;
+
+      margin:70px auto 50px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:50px;
+
+      padding:20px 0;
+    }
+
+    .page-about-image img{
+      width:260px;
+      max-width:100%;
+    }
+
+    .page-about-text{
+      max-width:500px;
+    }
+
+    .page-about-text h2{
+      font-size:28px;
+      margin-bottom:12px;
+    }
+
+    .page-about-text p{
+      font-size:16px;
+      line-height:1.8;
+      color:#555;
+    }
+
+    /* HORIZONTAL TASK SCROLL */
+
+    .task-scroll{
+      display:flex;
+      gap:20px;
+
+      overflow-x:auto;
+      overflow-y:hidden;
+
+      padding-bottom:15px;
+      align-items:flex-start;
+    }
+
+    .task-scroll::-webkit-scrollbar{
+      height:8px;
+    }
+
+    .task-scroll::-webkit-scrollbar-thumb{
+      background:#D89B6B;
+      border-radius:20px;
+    }
+
+    /* TASK SECTION WRAPPER */
+
+    .task-wrapper{
+      width:92%;
+      max-width:1500px;
+
+      margin:50px auto 100px;
+      padding:40px;
+
+      background:white;
+      border-radius:30px;
+
+      box-shadow:0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    /* PAGE INTRO INSIDE WRAPPER */
+
+    .page-intro{
+      text-align:left;
+      margin-bottom:30px;
+      padding:0 5px;
+    }
+
+    .page-intro h2{
+      font-size:28px;
+      margin-bottom:10px;
+      color:#333;
+    }
+
+    .page-intro p{
+      font-size:16px;
+      line-height:1.7;
+      color:#555;
+      max-width:700px;
+    }
+
+    /* TASK HORIZONTAL SCROLL */
+
+    .task-scroll{
+      display:flex;
+      gap:20px;
+
+      overflow-x:auto;
+      overflow-y:hidden;
+
+      padding-bottom:12px;
+      align-items:flex-start;
+    }
+
+    .task-scroll::-webkit-scrollbar{
+      height:8px;
+    }
+
+    .task-scroll::-webkit-scrollbar-thumb{
+      background:#D89B6B;
+      border-radius:20px;
+    }
+
+    /* TASK CARD */
+
+    .task-card{
+      min-width:350px;
+      width:350px;
+
+      background:#FFEDDB;
+      border-radius:24px;
+
+      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+
+      overflow:hidden;
+      flex-shrink:0;
+
+      transition:0.3s ease;
+    }
+
+    .task-card.active{
+      box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    /* TASK HEADER */
+
+    .task-header{
+      width:100%;
+      border:none;
+      background:none;
+
+      padding:22px;
+
+      font-size:17px;
+      font-weight:600;
+      text-align:left;
+
+      cursor:pointer;
+      transition:0.3s ease;
+    }
+
+    .task-header:hover{
+      background:#f5dfc9;
+    }
+
+    /* DROPDOWN */
+
+    .task-content{
+      max-height:0;
+      overflow:hidden;
+
+      opacity:0;
+
+      transition:
+        max-height 0.35s ease,
+        opacity 0.2s ease;
+
+      padding:0 22px;
+    }
+
+    .task-card.active .task-content{
+      opacity:1;
+      padding:0 22px 25px;
+    }
+
+    /* TEXT */
+
+    .label{
+      font-weight:600;
+      margin:18px 0 10px;
+    }
+
+    .scenario-text{
+      font-size:15px;
+      line-height:1.7;
+      color:#444;
+    }
+
+    .task-list{
+      margin-left:20px;
+    }
+
+    .task-list li{
+      font-size:14px;
+      line-height:1.7;
+      margin-bottom:8px;
+    }
+
+    strong{
+      color:#000;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .navbar{
+        padding:15px 20px;
+      }
+
+      .navbar ul{
+        gap:15px;
+        font-size:12px;
+      }
+
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
+      .page-intro h2{
+        font-size:34px;
+      }
+
+      .page-intro p{
+        font-size:18px;
+      }
+
+      .task-container{
+        padding:35px;
+      }
+
+      .task-title h3{
+        font-size:28px;
+      }
+
+      .label{
+        font-size:22px;
+      }
+
+      .scenario-text,
+      .task-list li{
+        font-size:18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar" id="navbar">
+    <div class="logo">
+      <img id="logo" src="pictures/LOGO 3.png" alt="Logo">
+    </div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="data.html">Data Gathering</a></li>
+      <li><a href="results.html">Results & Discussions</a></li>
+      <li><a href="tasks.html" class="active">Tasks & Scenarios</a></li>
+      <li><a href="reflections.html">Reflections</a></li>
+    </ul>
+  </div>
+
+  <section class="hero"></section>
+
+  <section class="page-about">
+
+    <div class="page-about-image">
+      <img src="pictures/pp.gif" alt="Page Image">
+    </div>
+
+    <div class="page-about-text">
+      <h2>About this Page</h2>
+
+      <p>
+        This page outlines the usability testing scenarios and tasks completed by 
+        participants to evaluate the functionality and overall user experience of 
+        PawTrack.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- INTRO -->
+
+  <section class="task-wrapper">
+
+    <section class="page-intro">
+
+      <h3>Task and Scenarios</h3>
+
+      <p>We prepared seven tasks and scenarios for our
+        participants to evaluate the usability and
+        overall experience of the PawTrack application.
+      </p>
+
+    </section>
+
+    <section class="task-scroll">
+
+      <!-- TASK 1 -->
+      <div class="task-card">
+        <button class="task-header">
+          🐶 View Vaccination Records
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            You are a pet owner who wants to check the
+            vaccination status of your pets and review
+            their upcoming vaccinations.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Open the PawTrack application</li>
+            <li>Navigate to the <strong>Vaccination Records</strong> screen</li>
+            <li>View the list of your registered pets</li>
+            <li>Check the <strong>vaccination status</strong> of each pet</li>
+            <li>Review the <strong>last vaccination date</strong></li>
+            <li>Switch between <strong>Current and Past Records</strong> tabs</li>
+            <li>Identify any <strong>upcoming vaccinations</strong></li>
+          </ol>
+
+        </div>
+      </div>
+
+      <!-- TASK 2 -->
+      <div class="task-card">
+        <button class="task-header">
+          🐱 Book a Veterinary Appointment
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            One of your pets needs a vaccination.
+            You want to schedule an appointment with
+            a veterinary clinic using the app.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Navigate to the <strong>Book Appointment</strong> screen</li>
+            <li>Select a pet from the list</li>
+            <li>Choose a clinic</li>
+            <li>Select service type (vaccination, check-up, etc.)</li>
+            <li>Set the appointment <strong>date</strong></li>
+            <li>Set the appointment <strong>time</strong></li>
+            <li>Click <strong>Confirm Appointment</strong></li>
+            <li>Verify the appointment was booked successfully</li>
+          </ol>
+
+        </div>
+      </div>
+
+      <!-- TASK 3 -->
+      <div class="task-card">
+        <button class="task-header">
+          🐻 Add a New Pet
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            You recently got a new pet and want
+            to register it so you can track
+            health records and appointments.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Navigate to <strong>Add New Pet</strong></li>
+            <li>Upload a photo of your pet</li>
+            <li>Enter the <strong>pet name</strong></li>
+            <li>Select the <strong>species</strong></li>
+            <li>Input the <strong>breed</strong></li>
+            <li>Set the <strong>date of birth</strong></li>
+            <li>Add optional notes</li>
+            <li>Click <strong>Save</strong></li>
+            <li>Verify the pet appears in the system</li>
+          </ol>
+
+        </div>
+      </div>
+
+      <!-- TASK 4 -->
+      <div class="task-card">
+        <button class="task-header">
+          🐸 Verify Appointment in Records
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            After booking an appointment,
+            you want to confirm that it
+            appears in your records.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Return to <strong>Vaccination Records</strong></li>
+            <li>Check the <strong>Upcoming Vaccinations</strong> section</li>
+            <li>Locate the scheduled appointment</li>
+            <li>Verify details such as pet name, date, clinic, and service</li>
+          </ol>
+
+        </div>
+      </div>
+
+      <!-- TASK 5 -->
+      <div class="task-card">
+        <button class="task-header">
+          🐧 View Past Vaccination Record
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            You want to review the
+            complete vaccination history
+            of your pet.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Navigate to <strong>Vaccination Records</strong></li>
+            <li>Switch to <strong>Past Records</strong></li>
+            <li>Select a pet</li>
+            <li>View detailed vaccination information</li>
+
+            <ul>
+              <li>Service type</li>
+              <li>Date administered</li>
+              <li>Clinic name</li>
+            </ul>
+
+            <li>Scroll through past records</li>
+          </ol>
+
+        </div>
+      </div>
+
+      <!-- TASK 6 -->
+      <div class="task-card">
+        <button class="task-header">
+          🦉 Navigate Using Bottom Menu
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            You want to explore different
+            sections of the app using
+            the bottom navigation menu.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Use the bottom navigation bar</li>
+            <li>Go to <strong>Home</strong></li>
+            <li>Navigate to <strong>Records</strong></li>
+            <li>Open <strong>Reminders</strong></li>
+            <li>Access <strong>Profile</strong></li>
+            <li>Return to the previous screen</li>
+          </ol>
+
+        </div>
+      </div>
+
+      <!-- TASK 7 -->
+      <div class="task-card">
+        <button class="task-header">
+          🐹 Upload and Change Pet Photo
+        </button>
+
+        <div class="task-content">
+
+          <div class="label">Scenario:</div>
+
+          <p class="scenario-text">
+            You want to update your pet’s
+            profile picture.
+          </p>
+
+          <div class="label">Tasks:</div>
+
+          <ol class="task-list">
+            <li>Navigate to pet profile or Add New Pet</li>
+            <li>Click <strong>Upload Photo</strong></li>
+            <li>Select an image</li>
+            <li>Confirm the selected photo</li>
+            <li>Verify the image updates successfully</li>
+          </ol>
+
+        </div>
+      </div>
+
+    </section>
+  </section>
+
+
+  <script>
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      const logo = document.getElementById("logo");
+
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+        logo.src = "pictures/LOGO 3.png";
+      } else {
+        navbar.classList.remove("scrolled");
+        logo.src = "pictures/LOGO 4.png";
+      }
+    });
+
+    // TASK ACCORDION
+    const cards =
+      document.querySelectorAll(".task-card");
+
+    cards.forEach(card => {
+
+      const button =
+        card.querySelector(".task-header");
+
+      const content =
+        card.querySelector(".task-content");
+
+      button.addEventListener("click", () => {
+
+        // close all other cards
+        cards.forEach(otherCard => {
+
+          const otherContent =
+            otherCard.querySelector(".task-content");
+
+          if(otherCard !== card){
+            otherCard.classList.remove("active");
+            otherContent.style.maxHeight = "0px";
+          }
+        });
+
+        // toggle clicked card
+        if(card.classList.contains("active")){
+
+          card.classList.remove("active");
+          content.style.maxHeight = "0px";
+
+        } else {
+
+          card.classList.add("active");
+          content.style.maxHeight =
+            content.scrollHeight + "px";
+        }
+      });
+
+    });
+  </script>
+
+</body>
+<footer class="footer">
+
+  <p>
+    &copy; PawTrack Pet Care & Vet Booking System | BSIT-3C Group 5
+  </p>
+
+</footer>
+</html>

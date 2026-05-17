@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawTrack</title>
+  <link rel="stylesheet" href="css/nav_foot.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .hero {
+      height: 65vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 60px;
+      background:url('pictures/data.png');
+    
+
+      background-size:cover;
+      background-position:center;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+
+      color:black;
+      padding:40px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:32px;
+      margin-bottom:35px;
+      margin-top:30px;
+    }
+
+    .page-about{
+      max-width:1000px;
+      width:90%;
+
+      margin:70px auto 50px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:50px;
+
+      padding:20px 0;
+    }
+
+    .page-about-image img{
+      width:260px;
+      max-width:100%;
+    }
+
+    .page-about-text{
+      max-width:500px;
+    }
+
+    .page-about-text h2{
+      font-size:28px;
+      margin-bottom:12px;
+    }
+
+    .page-about-text p{
+      font-size:16px;
+      line-height:1.8;
+      color:#555;
+    }
+    /* PDF SECTION */
+
+    .pdf-wrapper{
+      max-width:1000px;
+      width:90%;
+      margin:0 auto 50px;
+    }
+
+    .simple-pdf-card{
+      background:#FFEDDB;
+      border-radius:18px;
+      padding:25px 30px;
+
+      display:flex;
+      align-items:flex-start;
+      gap:20px;
+
+      box-shadow:0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .pdf-icon{
+      font-size:48px;
+      flex-shrink:0;
+    }
+
+    .pdf-content h3{
+      font-size:24px;
+      margin-bottom:8px;
+      color:#333;
+    }
+
+    .pdf-content p{
+      font-size:15px;
+      line-height:1.6;
+      color:#555;
+      margin-bottom:16px;
+    }
+
+    /* RESEARCH CONTAINER */
+
+    .research-container{
+      width:90%;
+      max-width:1000px;
+      margin:50px auto;
+
+      background:#FFEDDB;
+      border-radius:22px;
+      padding:35px;
+
+      box-shadow:0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .research-header{
+      text-align:center;
+      margin-bottom:35px;
+    }
+
+    .research-header h3{
+      font-size:26px;
+      margin-bottom:10px;
+    }
+
+    .research-header p{
+      font-size:15px;
+      color:#555;
+      line-height:1.7;
+      max-width:750px;
+      margin:auto;
+    }
+
+    /* SECTION INSIDE CONTAINER */
+
+    .research-section{
+      margin-top:35px;
+    }
+
+    .research-section h4{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#333;
+    }
+
+    .research-desc{
+      font-size:15px;
+      color:#555;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    /* SURVEY CARD */
+
+    .survey-card{
+      background:white;
+      border-radius:16px;
+      padding:20px;
+
+      display:flex;
+      align-items:center;
+      gap:18px;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .pdf-icon{
+      font-size:40px;
+    }
+
+    /* WORKBOOK ROW */
+
+    .workbook-row{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .workbook-card{
+      background:white;
+      border-radius:16px;
+      padding:22px 18px;
+      width:200px;
+
+      text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+
+      transition:0.3s ease;
+    }
+
+    .workbook-card:hover{
+      transform:translateY(-4px);
+    }
+
+    .pdf-name{
+      font-size:15px;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+
+    .pdf-button{
+      display:inline-block;
+      background:#D89B6B;
+      color:white;
+      text-decoration:none;
+
+      padding:10px 16px;
+      border-radius:10px;
+
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .pdf-button:hover{
+      background:#bf8457;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        justify-content: center;
+        text-align: center;
+      }
+   
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar" id="navbar">
+    <div class="logo">
+      <img id="logo" src="pictures/LOGO 3.png" alt="Logo">
+    </div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="data.html"  class="active">Data Gathering</a></li>
+      <li><a href="results.html">Results & Discussions</a></li>
+      <li><a href="tasks.html">Tasks & Scenarios</a></li>
+      <li><a href="reflections.html">Reflections</a></li>
+    </ul>
+  </div>
+
+  <section class="hero"></section>
+
+  <section class="page-about">
+
+    <div class="page-about-image">
+      <img src="pictures/jp.gif" alt="Page Image">
+    </div>
+
+    <div class="page-about-text">
+      <h2>About this Page</h2>
+
+      <p>
+        This page contains research materials,
+        documentation, and evaluation records
+        gathered throughout the usability testing
+        of the PawTrack application.
+      </p>
+    </div>
+
+  </section>
+  
+  <!-- PDF SECTION -->
+
+  <section class="pdf-wrapper">
+
+    <div class="simple-pdf-card">
+
+      <div class="pdf-icon">
+        📋
+      </div>
+
+      <div class="pdf-content">
+
+        <h3>Consent Form</h3>
+
+        <p>
+          Prior to participating in the usability testing, participants were provided with information regarding the purpose of the study, the procedures involved, and their rights.
+        </p>
+
+        <a href="pdf/ConsentForm.pdf"
+          target="_blank"
+          class="pdf-button">
+          View PDF
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="research-container">
+
+    <!-- HEURISTIC EVALUATION -->
+
+    <div class="research-section">
+
+      <h4>Heuristic Evaluation Workbooks</h4>
+
+      <p class="research-desc">
+        Each member individually evaluated the PawTrack prototype using a heuristic evaluation workbook to assess usability and identify possible improvements.
+      </p>
+
+      <div class="workbook-row">
+
+        <div class="workbook-card">
+          <p class="pdf-name">ATOLE</p>
+
+          <a href="pdf/ATOLE_Heuristic_Evaluation_Workbook.pdf"
+            target="_blank"
+            class="pdf-button">
+            Open Workbook
+          </a>
+        </div>
+
+        <div class="workbook-card">
+          <p class="pdf-name">DELFINO</p>
+
+          <a href="pdf/DELFINO_Heuristic_Evaluation_Workbook.pdf"
+            target="_blank"
+            class="pdf-button">
+            Open Workbook
+          </a>
+        </div>
+
+        <div class="workbook-card">
+          <p class="pdf-name">PAPA</p>
+
+          <a href="pdf/PAPA_Heuristic_Evaluation_Workbook.pdf"
+            target="_blank"
+            class="pdf-button">
+            Open Workbook
+          </a>
+        </div>
+
+        <div class="workbook-card">
+          <p class="pdf-name">CANO</p>
+
+          <a href="pdf/CanoJC_Heuristic_Evaluation_Workbook (1).pdf"
+            target="_blank"
+            class="pdf-button">
+            Open Workbook
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SURVEY QUESTIONNAIRES -->
+
+    <div class="research-section">
+
+      <h4>Supporting Documents</h4>
+
+      <p class="research-desc">
+        This section contains the completed survey questionnaires collected from participants during the usability testing of the PawTrack application.
+      </p>
+
+      <div class="survey-card">
+
+        <div class="pdf-icon">📝</div>
+
+        <div>
+          <p class="pdf-name">
+            Answered Survey Questionnaires
+          </p>
+
+          <a href="pdf/Answered Survey Questionnaire.pdf"
+            target="_blank"
+            class="pdf-button">
+            View PDF
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+      <!-- DOCUMENTATION SECTION -->
+
+    <div class="research-section">
+
+      <h4>Documentation Images</h4>
+
+      <p class="research-desc">
+        This section contains photo documentation gathered during the usability testing and evaluation process.
+      </p>
+
+      <div class="survey-card">
+
+        <div class="pdf-icon">📷</div>
+
+        <div>
+          <p class="pdf-name">
+            Documentation Gallery
+          </p>
+
+          <a href="documentation.html"
+            class="pdf-button">
+            Open Gallery
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const logo = document.getElementById('logo');
+
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        logo.src = "pictures/LOGO 3.png";
+      } else {
+        navbar.classList.remove('scrolled');
+        logo.src = "pictures/LOGO 4.png";
+      }
+    });
+  </script>
+
+</body>
+<footer class="footer">
+
+  <p>
+    &copy; PawTrack Pet Care & Vet Booking System | BSIT-3C Group 5
+  </p>
+
+</footer>
+</html>
